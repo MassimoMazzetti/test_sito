@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable",
+      "deno.ns"
+    ],
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "types": [
+      "@types/react",
+      "@types/react-dom"
+    ],
+    "allowUnreachableCode": false,
+    "module": "esnext",
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "useUnknownInCatchVariables": true
+  },
+  "imports": {
+    "@mantine/core": "npm:@mantine/core@^8.3.12",
+    "@mantine/hooks": "npm:@mantine/hooks@^8.3.12",
+    "@types/react": "npm:@types/react@^19.2.8",
+    "@types/react-dom": "npm:@types/react-dom@^19.2.3",
+    "react": "npm:react@^19.2.3",
+    "react-dom": "npm:react-dom@^19.2.3"
+  },
+  "exclude": ["dist", "node_modules"],
+  "tasks": {
+    "build": "deno bundle --outdir dist src/index.html --platform browser --minify",
+    "bundle": "deno bundle --outdir dist src/index.html --platform browser --watch",
+    "dev": "deno task bundle & deno run --allow-net --allow-read jsr:@std/http/file-server dist --watch-hmr=dist"
+  }
+}
