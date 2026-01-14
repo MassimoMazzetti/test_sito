@@ -19,10 +19,12 @@ jobs:
       - name: Setup Deno
         uses: denoland/setup-deno@v1
         with:
-          deno-version: v1.x
+          deno-version: v2.x
 
       - name: Build Project
-        run: deno task build # Questo genererà la tua cartella /dist
+        run: |
+          rm -f deno.lock # Elimina il vecchio lockfile per evitare conflitti
+          deno task build # Rigenera le dipendenze e builda
 
       - name: Fix for GitHub Pages (No Jekyll)
         run: touch dist/.nojekyll # Impedisce a GitHub di ignorare cartelle con underscore
