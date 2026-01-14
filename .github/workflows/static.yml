@@ -27,12 +27,12 @@ jobs:
           deno task build # Rigenera le dipendenze e builda
 
       - name: Fix for GitHub Pages (No Jekyll)
-        run: touch dist/.nojekyll # Impedisce a GitHub di ignorare cartelle con underscore
+        run: touch dist/.nojekyll 
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./dist # GitHub caricherà tutto quello che c'è in dist
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
