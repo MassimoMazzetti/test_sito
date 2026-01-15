@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Fabiana Sbraccia</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: #121212;
+            --accent: #e50914;
+            --text: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* --- HEADER & HAMBURGER ANIMATO --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1001;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: flex-end;
+            box-sizing: border-box;
+        }
+
+        .menu-icon {
+            cursor: pointer;
+            z-index: 1002;
+            padding: 10px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 5px;
+        }
+
+        .menu-icon span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: var(--text);
+            margin: 6px 0;
+            transition: var(--transition);
+        }
+
+        /* Trasformazione in Croce */
+        .menu-icon.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .menu-icon.open span:nth-child(2) { opacity: 0; }
+        .menu-icon.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            height: 100vh;
+            background: rgba(5, 5, 5, 0.98);
+            z-index: 1000;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-overlay.active { right: 0; }
+
+        .nav-overlay a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            margin: 15px 0;
+            letter-spacing: 3px;
+            transition: var(--transition);
+        }
+
+        .nav-overlay a:hover { color: var(--accent); transform: scale(1.1); }
+
+        /* --- LAYOUT CONTENUTI --- */
+        section { padding: 100px 5% 40px; }
+        .section-title { 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            border-left: 5px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- VIDEO CARDS --- */
+        .video-box {
+            position: relative;
+            background: var(--card-bg);
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-box.vertical { aspect-ratio: 9/16; }
+
+        .thumbnail {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .hover-desc {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 30px;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .video-box:hover .hover-desc { opacity: 1; }
+        .video-box:hover .thumbnail { transform: scale(1.1); }
+
+        iframe { width: 100%; height: 100%; border: none; }
+
+        /* --- FOOTER & FORM --- */
+        footer { 
+            padding: 80px 5%; 
+            background: #0a0a0a; 
+            border-top: 1px solid #222;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: #151515;
+            border: 1px solid #333;
+            color: white;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            text-transform: uppercase;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .contact-form button:hover { background: #b20710; }
+
+        .client-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .client-tag {
+            border: 1px solid #444;
+            padding: 5px 12px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 850px) {
+            .footer-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="menu-icon" id="menuBtn" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </header>
+
+    <nav class="nav-overlay" id="navOverlay">
+        <a href="#showreel" onclick="toggleMenu()">Showreel</a>
+        <a href="#vertical" onclick="toggleMenu()">Vertical</a>
+        <a href="#corporate" onclick="toggleMenu()">ADS & Corporate</a>
+        <a href="#motion" onclick="toggleMenu()">Motion Graphic</a>
+        <a href="#eventi" onclick="toggleMenu()">Eventi</a>
+        <a href="#film" onclick="toggleMenu()">Film & Music Video</a>
+        <a href="#contatti" onclick="toggleMenu()">Contatti</a>
+    </nav>
+
+    <section id="showreel">
+        <h2 class="section-title">Showreel </h2>
+        <div class="video-box" style="max-width: 1200px; margin: 0 auto;" onclick="play(this, 'AKn8HL6Z-iQ')">
+            <img src="assets/test.jpg" class="thumbnail">
+            <div class="hover-desc">
+                <p>Testo in dissolvenza con piccola descrizione del video [cite: 9]</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="vertical">
+        <h2 class="section-title">Vertical Content [cite: 2]</h2>
+        <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            <div class="video-box vertical" onclick="play(this, 'ID_UGC')">
+                <img src="ugc.jpg" class="thumbnail"><div class="hover-desc"><h3>UGC [cite: 5]</h3></div>
+            </div>
+            <div class="video-box vertical" onclick="play(this, 'ID_CONTENT')">
+                <img src="content.jpg" class="thumbnail"><div class="hover-desc"><h3>CONTENT [cite: 4]</h3></div>
+            </div>
+            <div class="video-box vertical" onclick="play(this, 'ID_PODCAST')">
+                <img src="podcast.jpg" class="thumbnail"><div class="hover-desc"><h3>VERTICAL PODCAST [cite: 24]</h3></div>
+            </div>
+            <div class="video-box vertical" onclick="play(this, 'ID_NOISES')">
+                <img src="noises.jpg" class="thumbnail"><div class="hover-desc"><h3>NOISES [cite: 6]</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="corporate">
+        <h2 class="section-title">ADS & Corporate [cite: 3, 8]</h2>
+        <div class="grid">
+            <div class="video-box" onclick="play(this, 'ID_AXON')">
+                <img src="axon.jpg" class="thumbnail"><div class="hover-desc"><h3>AXON [cite: 7, 30]</h3></div>
+            </div>
+            <div class="video-box" onclick="play(this, 'ID_TAZZINA')">
+                <img src="tazzina.jpg" class="thumbnail"><div class="hover-desc"><h3>TAZZINA [cite: 13]</h3></div>
+            </div>
+            <div class="video-box" onclick="play(this, 'ID_XMENU')">
+                <img src="xmenu.jpg" class="thumbnail"><div class="hover-desc"><h3>XMENU [cite: 20]</h3></div>
+            </div>
+            <div class="video-box" onclick="play(this, 'ID_CAMERA')">
+                <img src="camera.jpg" class="thumbnail"><div class="hover-desc"><h3>CAMERA CAFFÈ [cite: 23]</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="motion">
+        <h2 class="section-title">Motion Graphic [cite: 11]</h2>
+        <div class="grid">
+            <div class="video-box" onclick="play(this, 'ID_LD4D')">
+                <img src="ld4d.jpg" class="thumbnail"><div class="hover-desc"><h3>LD4D [cite: 12, 29]</h3></div>
+            </div>
+            <div class="video-box" onclick="play(this, 'ID_LASAGNA')">
+                <img src="lasagna.jpg" class="thumbnail"><div class="hover-desc"><h3>LASAGNA (Stop Motion) [cite: 19, 22]</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="eventi">
+        <h2 class="section-title">Eventi [cite: 10]</h2>
+        <div class="grid">
+            <div class="video-box" onclick="play(this, 'ID_SUPERGOL')">
+                <img src="supergol.jpg" class="thumbnail"><div class="hover-desc"><h3>SUPERGOL [cite: 17]</h3></div>
+            </div>
+            <div class="video-box" onclick="play(this, 'ID_EVENTI')">
+                <img src="eventi.jpg" class="thumbnail"><div class="hover-desc"><h3>EVENTI [cite: 10]</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="film">
+        <h2 class="section-title">Film & Music Video [cite: 14, 15]</h2>
+        <div class="grid">
+            <div class="video-box" onclick="play(this, 'ID_BUIO')">
+                <img src="buio.jpg" class="thumbnail"><div class="hover-desc"><h3>SE NEL BUIO AVRAI PAURA [cite: 21]</h3></div>
+            </div>
+            <div class="video-box" onclick="play(this, 'ID_JAZZ')">
+                <img src="jazz.jpg" class="thumbnail"><div class="hover-desc"><h3>FIDANZA JAZZ COMBO [cite: 18]</h3></div>
+            </div>
+            <div class="video-box" onclick="play(this, 'ID_CLIMA')">
+                <img src="clima.jpg" class="thumbnail"><div class="hover-desc"><h3>CLIMA X [cite: 16]</h3></div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contatti">
+        <div class="footer-container">
+            <div class="contact-info">
+                <h2 class="section-title">Contatti [cite: 34]</h2>
+                <p><strong>Fabiana Sbraccia [cite: 35]</strong><br>Video Editor e Colorist [cite: 36]<br>Roma [cite: 38]</p>
+                
+                <h3 style="margin-top: 40px; text-transform: uppercase;">Clienti [cite: 26]</h3>
+                <div class="client-list">
+                    <span class="client-tag">Save The Children [cite: 28]</span>
+                    <span class="client-tag">Lisciani Giochi [cite: 31]</span>
+                    <span class="client-tag">Fondazione Vertical [cite: 32]</span>
+                    <span class="client-tag">Fisioaccordo [cite: 33]</span>
+                    <span class="client-tag">Videomnia TV [cite: 27]</span>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <h2 class="section-title">Invia un messaggio </h2>
+                <form>
+                    <input type="text" placeholder="Nome" required>
+                    <input type="email" placeholder="Email" required>
+                    <textarea rows="5" placeholder="Il tuo messaggio" required></textarea>
+                    <button type="submit">Invia Form </button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const btn = document.getElementById('menuBtn');
+            const nav = document.getElementById('navOverlay');
+            btn.classList.toggle('open');
+            nav.classList.toggle('active');
+            // Blocca lo scroll quando il menu è aperto
+            document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        function play(el, id) {
+            el.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen style="width:100%;height:100%;border:none;"></iframe>`;
+        }
+    </script>
+</body>
+</html>
+
