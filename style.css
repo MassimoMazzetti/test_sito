@@ -17,7 +17,14 @@
   font-display: swap; /* Mostra un font temporaneo mentre carica questo */
   letter-spacing: 1em;
 }
-
+@font-face {
+  font-family: "Michroma";
+  src: url("fonts/Michroma-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Mostra un font temporaneo mentre carica questo */
+  letter-spacing: 1em;
+}
 h1 {
   font-family: "Sugo Display", sans-serif;
   font-size: 3rem;
@@ -137,23 +144,24 @@ section:not(#showreel) {
   padding: 0 8% 3em;
 }
 .section-title {
-  font-family: "Revive 80", sans-serif;
+  font-family: "Michroma", sans-serif;
   text-transform: uppercase;
   letter-spacing: 3px;
   text-align: center;
   margin-bottom: 0.3em;
-  font-size: 5.5em;
+  font-size: 4.5em;
 }
 
 .client-grid {
   display: flex;
   flex-direction: column;
   text-align: center;
-  font-family: "helvetica-neue-world", sans-serif;
-  font-weight: 400;
+  font-weight: normal;
+  font-family: "Michroma", sans-serif;
+  font-size: 2.5rem;
+  margin: 0;
   font-style: normal;
   align-items: center;
-  font-size: 2em;
 }
 .grid {
   display: grid;
@@ -264,7 +272,7 @@ footer {
 /* Layout Desktop */
 .oriziontal-container {
   display: grid;
-  grid-template-columns: repeat(4);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(5);
   gap: 2em 6em;
   padding: 20px;
@@ -272,27 +280,20 @@ footer {
 }
 
 .div1 {
-  grid-column: span 2 / span 2;
-  grid-row: span 3 / span 3;
+  grid-row: span 2 / span 2;
 }
 
 .div2 {
-  grid-column: span 2 / span 2;
   grid-row: span 2 / span 2;
-  grid-column-start: 3;
 }
 .div3 {
-  grid-column: span 2 / span 2;
   grid-row: span 3 / span 3;
-  grid-column-start: 3;
   grid-row-start: 3;
 }
 
 .div4 {
-  grid-column: span 2 / span 2;
-  grid-row: span 2 / span 2;
-  text-align: end;
-  grid-row-start: 4;
+  grid-row: span 3 / span 3;
+  grid-row-start: 3;
 }
 
 .oriziontal-card {
@@ -300,7 +301,6 @@ footer {
   border-radius: 1em;
   overflow: hidden;
   background-color: --bg-color;
-  margin-top: 1em;
 }
 
 .vertical-container {
@@ -375,6 +375,12 @@ footer {
   overflow: hidden;
   background-color: --bg-color;
 }
+.film-card {
+  flex: 1;
+  border-radius: 1em;
+  overflow: hidden;
+  background-color: --bg-color;
+}
 
 .card-image {
   display: flex;
@@ -385,13 +391,18 @@ footer {
 .card-content {
   font-family: "Sugo Display", sans-serif;
   font-size: large;
+  text-align: left;
+  margin-top: -1em;
 }
 
 .accordion-title {
   margin: 0;
-  font-size: 3em;
+  font-size: 1.5em;
   color: #fff;
   letter-spacing: 0.1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .accordion-description {
@@ -399,24 +410,222 @@ footer {
   margin-top: 10px;
   font-size: 1.5rem;
   color: #fff;
+  margin: 0;
 }
 
 .accordion-description h4 {
+  font-size: 1.3rem;
   margin: 0;
 }
 
 .accordion-description p {
-    padding: 0;
-    margin: 0;
-    line-height: 1.3em;
+  padding: 0 8em 0 0;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1em;
 }
 
+.card-content.active .accordion-description {
+  grid-template-rows: 1fr;
+  filter: blur(0px);
+  opacity: 1;
+  /* Se proprio serve spazio tra le card quando è aperto, aggiungilo qui */
+  margin-bottom: 10px;
+}
+.card-content.active .accordion-description-inner {
+  transform: translateY(0); /* Scivola verso il basso */
+}
+.accordion-description {
+  display: grid;
+  grid-template-rows: 0fr; /* Altezza reale zero */
+  transition:
+    grid-template-rows 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    filter 0.4s ease,
+    opacity 0.4s ease,
+    margin 0.6s ease; /* Anima anche eventuali margini */
+  overflow: hidden;
+  filter: blur(8px);
+  opacity: 0;
+  /* IMPORTANTE: Il padding qui deve essere 0 quando è chiuso */
+  padding: 0;
+}
+
+.accordion-description-inner {
+  min-height: 0;
+  transform: translateY(-20px);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Applichiamo il padding qui dentro per non influenzare l'altezza esterna quando chiusa */
+  padding-bottom: 20px;
+}
+
+.card-content.active .chevron::after {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+/* Simbolo per far capire che è cliccabile */
+.chevron::after {
+  content: "";
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-left: 10px;
+  /* Icona Chevron Down in formato SVG */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+  transition: transform 0.3s ease;
+}
+
+/* Singola riga */
+.software-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto 40px auto; /* Spazio tra le righe */
+  gap: 40px; /* Spazio tra icona e testo */
+}
+
+.contact-details {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.contact-details div h2 {
+  text-align: left;
+}
+
+.text-container-software h2 {
+  text-align: center;
+  font-weight: normal;
+  font-family: "Michroma", sans-serif;
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+/* Gestione icone */
+.icon-container {
+  flex: 0 0 150px; /* Dimensione fissa dell'area icona */
+  display: flex;
+  justify-content: center;
+}
+
+.icon-container img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
 
 /* Layout Mobile */
 @media (max-width: 1500px) {
+  .contact-details {
+    flex-direction: column;
+  }
+  .menu-icon {
+    display: none;
+  }
+  .film-container {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 40px 15% !important;
+    scrollbar-width: none;
+    gap: 0;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+  }
+
+  .film-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .film-card.active {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .film-card {
+    flex: 0 0 70vw;
+    min-width: 70vw;
+    scroll-snap-align: center;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+    grid-row: auto !important;
+    margin: 0;
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+
+  /* Nasconde Titolo e Descrizione nella sezione Film su mobile */
+  .film-section .card-content {
+    display: none !important;
+  }
+
+  .vertical-container {
+    display: flex !important; /* Forza flex su mobile */
+    grid-template-columns: none !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* Calcolo: (100% schermo - 70% larghezza card) / 2 = 15% di padding */
+    padding: 40px 15% !important;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  .vertical-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vertical-card {
+    flex: 0 0 60vw;
+    min-width: 60vw;
+    scroll-snap-align: center;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+    transform: scale(0.85);
+    opacity: 0.5;
+    /* Reset stili grid se necessario */
+    grid-row: auto !important;
+    margin: 0;
+  }
+
+  .vertical-card.active {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  /* DOTS */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #ccc;
+    transition: 0.3s;
+  }
+
+  .dot.active {
+    background: #333;
+    transform: scale(1.5);
+  }
+
   .card-content {
     margin-bottom: 1em;
     text-align: center;
+    display: flex;
+    flex-direction: column;
   }
 
   .oriziontal-container {
@@ -434,22 +643,6 @@ footer {
     width: 100%;
   }
 
-  .film-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .vertical-card {
-    width: 100%;
-  }
-
-  .vertical-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .accordion-title {
     cursor: pointer;
     text-align: center;
@@ -463,32 +656,7 @@ footer {
     padding: 0 1.5rem;
   }
 
-  /* Simbolo per far capire che è cliccabile */
-  .chevron::after {
-    content: "";
-    display: inline-block;
-    width: 1.5rem;
-    height: 1.5rem;
-    margin-left: 10px;
-    /* Icona Chevron Down in formato SVG */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: contain;
-    vertical-align: middle;
-    transition: transform 0.3s ease;
-  }
-
-  .accordion-description {
-    display: none; /* Nasconde la descrizione inizialmente */
-    padding: 10px 0;
-  }
-
   /* Classe attiva per mostrare la descrizione al click */
-  .card-content.active .accordion-description {
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
 
   .accordion-description p {
     margin: 0;
@@ -502,12 +670,8 @@ footer {
     font-size: 2.3rem;
   }
 
-  .card-content.active .chevron::after {
-    transform: rotate(180deg);
-  }
-
   .section-title {
-    font-family: "Revive 80", sans-serif;
+    font-family: "Michroma", sans-serif;
     text-transform: uppercase;
     letter-spacing: 3px;
     text-align: center;
@@ -523,10 +687,9 @@ footer {
   }
 
   .software-item {
-    flex-direction: column; /* Incolonna su mobile */
     text-align: center;
     gap: 20px;
-    max-width: 250px;
+    max-width: 12em;
   }
 
   .text-container {
@@ -552,7 +715,122 @@ footer {
 
 /* Layout Mobile */
 @media (max-width: 768px) {
+  .text-container-software h2 {
+    font-size: 1rem;
+  }
+
+  .client-grid {
+    font-size: 1.5rem;
+  }
+
+  .contact-details {
+    flex-direction: column;
+  }
+  .contact-details div h2 {
+    text-align: center;
+    font-size: 1em;
+  }
+  .menu-icon {
+    display: none;
+  }
+  .film-container {
+    display: flex !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 40px 15% !important;
+    scrollbar-width: none;
+    gap: 0;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+  }
+
+  .film-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .film-card.active {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  .film-card {
+    flex: 0 0 70vw;
+    min-width: 70vw;
+    scroll-snap-align: center;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+    grid-row: auto !important;
+    margin: 0;
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+
+  /* Nasconde Titolo e Descrizione nella sezione Film su mobile */
+  .film-section .card-content {
+    display: none !important;
+  }
+
+  .vertical-container {
+    display: flex !important; /* Forza flex su mobile */
+    grid-template-columns: none !important;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    /* Calcolo: (100% schermo - 70% larghezza card) / 2 = 15% di padding */
+    padding: 40px 15% !important;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+    justify-content: flex-start;
+  }
+
+  .vertical-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .vertical-card {
+    flex: 0 0 70vw; /* Larghezza card fissa al 70% della larghezza schermo */
+    min-width: 70vw;
+    scroll-snap-align: center;
+    transition:
+      transform 0.4s ease,
+      opacity 0.4s ease;
+    transform: scale(0.85);
+    opacity: 0.5;
+    /* Reset stili grid se necessario */
+    grid-row: auto !important;
+    margin: 0;
+  }
+
+  .vertical-card.active {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  /* DOTS */
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ccc;
+    transition: 0.3s;
+  }
+
+  .dot.active {
+    background: #333;
+    transform: scale(1.5);
+  }
+
   .card-content {
+    display: flex;
+    flex-direction: column;
+
     margin-bottom: 1em;
     text-align: center;
   }
@@ -572,82 +850,40 @@ footer {
     width: 100%;
   }
 
-  .film-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .vertical-card {
-    width: 100%;
-  }
-
-  .vertical-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
   .accordion-title {
     cursor: pointer;
-    text-align: center;
+    text-align: left;
     align-items: center;
-    font-size: 1.5rem;
-
+    font-size: 1.1rem;
+    padding: 0.5em 0.1em 0 0;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
   }
   .accordion-title h3 {
     word-break: break-word;
     white-space: break-spaces;
-    padding: 0 1.5rem;
-  }
-
-  /* Simbolo per far capire che è cliccabile */
-  .chevron::after {
-    content: "";
-    display: inline-block;
-    width: 1rem;
-    height: 1rem;
-    margin-left: 10px;
-    /* Icona Chevron Down in formato SVG */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='2.5' stroke='white'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='m19.5 8.25-7.5 7.5-7.5-7.5' /%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-size: contain;
-    vertical-align: middle;
-    transition: transform 0.3s ease;
-  }
-
-  .accordion-description {
-    display: none; /* Nasconde la descrizione inizialmente */
-    padding: 10px 0;
-  }
-  .accordion-description p {
-    padding: 0 1.5rem;
-  }
-
-  /* Classe attiva per mostrare la descrizione al click */
-  .card-content.active .accordion-description {
-    display: block;
-    margin: 0;
     padding: 0;
   }
 
+  /* Classe attiva per mostrare la descrizione al click */
+
   .accordion-description p {
     margin: 0;
-    line-height: 1.5rem;
-    font-size: 1rem;
+    padding: 0;
+    padding-right: 2.5em;
+    line-height: 0.95rem;
+    text-align: left;
+    font-size: 0.9rem;
   }
   .accordion-description h4 {
-    margin: 0;
-    font-size: 1.3rem;
-  }
-
-  .card-content.active .chevron::after {
-    transform: rotate(180deg);
+    margin: -0.2em 0 -0.2em 0;
+    text-align: left;
+    font-size: 1.1rem;
   }
 
   .section-title {
-    font-family: "Revive 80", sans-serif;
+    font-family: "Michroma", sans-serif;
     text-transform: uppercase;
     letter-spacing: 3px;
     text-align: center;
@@ -664,10 +900,9 @@ footer {
   }
 
   .software-item {
-    flex-direction: column; /* Incolonna su mobile */
     text-align: center;
     gap: 20px;
-    max-width: 250px;
+    max-width: 8em;
   }
 
   .text-container {
@@ -683,7 +918,7 @@ footer {
   }
 
   .icon-container {
-    flex: 0 0 120px; /* Icone leggermente più piccole su mobile */
+    flex: 0 0 6em; /* Icone leggermente più piccole su mobile */
   }
 
   .footer-container {
@@ -790,28 +1025,7 @@ ul {
   background-color: #ff0000;
 }
 
-/* Singola riga */
-.software-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 900px;
-  margin: 0 auto 40px auto; /* Spazio tra le righe */
-  gap: 40px; /* Spazio tra icona e testo */
-}
 
-/* Gestione icone */
-.icon-container {
-  flex: 0 0 150px; /* Dimensione fissa dell'area icona */
-  display: flex;
-  justify-content: center;
-}
-
-.icon-container img {
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
 
 /* Gestione testo */
 .text-container {
@@ -888,5 +1102,12 @@ ul {
 @media (max-width: 768px) {
   .modal-content {
     width: 95%;
+  }
+}
+
+/* Nascondi i pallini su Desktop */
+@media (min-width: 1501px) {
+  .carousel-dots {
+    display: none;
   }
 }
