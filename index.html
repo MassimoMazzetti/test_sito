@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="google-site-verification" content="yvk5w7lqAfk4Z08qqmE9LsfpoSRO2BmcsWKyVz_3KyA" />
+
     <title>
       Fabiana Sbraccia | Video Editor & Colorist professionista a Roma
     </title>
@@ -90,7 +90,6 @@
     </header>
 
     <nav class="nav-overlay" id="navOverlay">
-      <a href="#showreel" onclick="toggleMenu()">Showreel</a>
       <a href="#vertical" onclick="toggleMenu()">Vertical</a>
       <a href="#corporate-section" onclick="toggleMenu()">Corporate</a>
       <a href="#motiongraphic" onclick="toggleMenu()">Motion Graphic</a>
@@ -121,8 +120,8 @@
           class="hover-desc"
           style="opacity: 1; background: rgba(0, 0, 0, 0.3)"
         >
-          <h2 class="section-title">fabiana sbraccia</h2>
-          <h3>Editor Video e Colorist</h3>
+          <h2 class="section-title" style="margin-bottom: 0;">fabiana sbraccia</h2>
+          <h3 style="margin-top: 0;">Editor Video e Colorist</h3>
           <button class="button">
             <span>PLAY Showreel</span>
           </button>
@@ -146,7 +145,10 @@
         </div>
 
         <div class="vertical2 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, '49hBT28uwQ0')">
+          <div
+            class="video-box-vertical"
+            onclick="playLocal(this, 'SOGNO.mp4')"
+          >
             <div class="card-image">
               <img
                 alt="Video Editing Vertical per Event coverage"
@@ -354,7 +356,7 @@
 
         <div class="div2 oriziontal-card">
           <div class="oriziontal-card">
-            <div class="video-box" onclick="play(this, 'AKn8HL6Z-iQ')">
+            <div class="video-box" onclick="play(this, 'Dbpgv2LVq6o')">
               <div class="card-image">
                 <img
                   alt="Video editor e colorist per video musicale BIRIMBO BIRAMBO"
@@ -451,7 +453,7 @@
         </div>
 
         <div class="film5 film-card">
-          <div class="video-box-vertical" onclick="play(this, 'OA3Xpw6yxJw')">
+          <div class="video-box-vertical" onclick="play(this, 'BEn42EnZq9s')">
             <div class="card-image">
               <img
                 alt="Video editor e Trailer Editor per lungometraggio Se Nel Buio Avrai Paura"
@@ -706,6 +708,8 @@
               href="https://www.linkedin.com/in/fabiana-sbraccia/"
               aria-label="LinkedIn"
               data-social="linkedin"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div class="filled"></div>
               <svg
@@ -731,6 +735,8 @@
               href="https://www.instagram.com/fabiana_sbraccia/"
               aria-label="Instagram"
               data-social="instagram"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div class="filled"></div>
               <svg
@@ -755,6 +761,8 @@
               href="https://www.youtube.com/@fabianasbraccia2880"
               aria-label="Youtube"
               data-social="youtube"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div class="filled"></div>
               <svg
@@ -813,12 +821,31 @@
           : "auto";
       }
 
+      function playLocal(el, fileName) {
+        const modal = document.getElementById("videoModal");
+        const videoBody = document.getElementById("modalVideoBody");
+        const videoPath = `assets/${fileName}`;
+        modal.classList.add("is-vertical");
+        videoBody.innerHTML = `
+    <video 
+      controls 
+      autoplay 
+      playsinline 
+      style="max-width: 100%; max-height: 80vh; display: block; margin: 0 auto;">
+      <source src="${videoPath}" type="video/mp4">
+      Il tuo browser non supporta il tag video.
+    </video>`;
+
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+      }
+
       function play(el, id) {
         const modal = document.getElementById("videoModal");
         const videoBody = document.getElementById("modalVideoBody");
         const origin =
           window.location.protocol === "file:" ? "*" : window.location.origin;
-
+        modal.classList.remove("is-vertical");
         // Inserisce l'iframe nella modale
         videoBody.innerHTML = `<iframe 
     src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&enablejsapi=1&origin=${origin}" 
