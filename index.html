@@ -450,7 +450,7 @@
 
       <div class="vertical-container">
         <div class="vertical3 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, 'vkCm2Nxf6WM')">
+          <div class="video-box-vertical" onclick="play(this, 'vkCm2Nxf6WM', true)">
             <div class="card-image">
               <img
                 loading="lazy"
@@ -463,7 +463,7 @@
         </div>
 
         <div class="vertical5 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, 'xZejM5O9lb0')">
+          <div class="video-box-vertical" onclick="play(this, 'xZejM5O9lb0', true)">
             <div class="card-image">
               <img
                 loading="lazy"
@@ -476,7 +476,7 @@
         </div>
 
         <div class="vertical1 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, 'Z7PnKhc-9Xg')">
+          <div class="video-box-vertical" onclick="play(this, 'Z7PnKhc-9Xg', true)">
             <div class="card-image">
               <img
                 loading="lazy"
@@ -489,7 +489,7 @@
         </div>
 
         <div class="vertical4 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, 'yTZNx6jQx9Y')">
+          <div class="video-box-vertical" onclick="play(this, 'yTZNx6jQx9Y', true)">
             <div class="card-image">
               <img
                 loading="lazy"
@@ -1260,12 +1260,12 @@
         document.body.style.overflow = "hidden";
       }
 
-      function play(el, id) {
+      function play(el, id, isVertical = false) {
         const modal = document.getElementById("videoModal");
         const videoBody = document.getElementById("modalVideoBody");
         const origin =
           window.location.protocol === "file:" ? "*" : window.location.origin;
-        modal.classList.remove("is-vertical");
+        modal.classList.toggle("is-vertical", isVertical);
         // Inserisce l'iframe nella modale
         videoBody.innerHTML = `<iframe 
     src="https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&enablejsapi=1&origin=${origin}" 

@@ -520,10 +520,6 @@ footer {
   object-fit: contain;
 }
 
-.is-vertical .modal-content {
-  top: 40%;
-}
-
 /* Layout Mobile */
 @media (max-width: 1024px) {
   .contact-details {
@@ -716,10 +712,6 @@ footer {
 
   .footer-container {
     grid-template-columns: 1fr;
-  }
-  
-  .is-vertical .modal-content {
-    top: 25%;
   }
 }
 
@@ -1107,14 +1099,33 @@ ul {
   border-radius: 8px;
 }
 
+/* Rapporto 9:16 per i video verticali (YouTube Shorts, ecc.) */
+.is-vertical .modal-content {
+  width: fit-content;
+  max-width: 95%;
+}
+
+.is-vertical #modalVideoBody {
+  padding-bottom: 0;
+  height: min(80vh, 800px);
+  aspect-ratio: 9 / 16;
+  margin: 0 auto;
+}
+
+.is-vertical #modalVideoBody iframe {
+  position: static;
+  width: 100%;
+  height: 100%;
+}
+
 /* Mobile: la modale occupa più spazio */
 @media (max-width: 768px) {
   .modal-content {
     width: 95%;
   }
 
-  .is-vertical .modal-content {
-    top: 25%;
+  .is-vertical #modalVideoBody {
+    height: min(70vh, 700px);
   }
 }
 
