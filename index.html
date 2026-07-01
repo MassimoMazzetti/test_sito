@@ -226,7 +226,23 @@
         ]
       }
     </script>
-
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="assets/loghi/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="assets/loghi/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="assets/loghi/favicon/favicon-16x16.png"
+    />
     <link rel="stylesheet" href="style.css" />
     <link rel="stylesheet" href="https://use.typekit.net/iho5gip.css" />
   </head>
@@ -276,13 +292,6 @@
       >
       <a href="#film" onclick="toggleMenu()" data-it="Film" data-en="Film"
         >Film</a
-      >
-      <a
-        href="#stopmotion"
-        onclick="toggleMenu()"
-        data-it="Stop Motion"
-        data-en="Stop Motion"
-        >Stop Motion</a
       >
       <a
         href="#podcast"
@@ -438,14 +447,54 @@
 
     <section id="vertical">
       <h2 class="section-title">Vertical</h2>
+
       <div class="vertical-container">
-        <div class="vertical1 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, 'Tq_1qqDhKg0')">
+        <div class="vertical3 vertical-card">
+          <div class="video-box-vertical" onclick="play(this, 'vkCm2Nxf6WM')">
             <div class="card-image">
               <img
                 loading="lazy"
-                alt="Video Editing Vertical per ADS"
-                src="assets/1.1-Vertical-ADS.png"
+                alt="Video Editing Vertical per product promo lavika"
+                src="assets/lavika.png"
+                class="thumbnail"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="vertical5 vertical-card">
+          <div class="video-box-vertical" onclick="play(this, 'xZejM5O9lb0')">
+            <div class="card-image">
+              <img
+                loading="lazy"
+                alt="Video Editing Vertical per moda almarighi"
+                src="assets/almarighi.png"
+                class="thumbnail"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="vertical1 vertical-card">
+          <div class="video-box-vertical" onclick="play(this, 'Z7PnKhc-9Xg')">
+            <div class="card-image">
+              <img
+                loading="lazy"
+                alt="Video Editing Vertical per Food"
+                src="assets/BLUME.png"
+                class="thumbnail"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="vertical4 vertical-card">
+          <div class="video-box-vertical" onclick="play(this, 'yTZNx6jQx9Y')">
+            <div class="card-image">
+              <img
+                loading="lazy"
+                alt="Video Editing Vertical per UGC speziali"
+                src="assets/speziali.png"
                 class="thumbnail"
               />
             </div>
@@ -467,32 +516,6 @@
             </div>
           </div>
         </div>
-
-        <div class="vertical3 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, 'y858c3BtcSY')">
-            <div class="card-image">
-              <img
-                loading="lazy"
-                alt="Video Editing Vertical per product promo"
-                src="assets/1.3-Vertical-ProductPromo.png"
-                class="thumbnail"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div class="vertical4 vertical-card">
-          <div class="video-box-vertical" onclick="play(this, 'gEu8ScT_jNw')">
-            <div class="card-image">
-              <img
-                loading="lazy"
-                alt="Video Editing Vertical per UGC"
-                src="assets/1.4-Vertical_UGC.png"
-                class="thumbnail"
-              />
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="carousel-dots" id="dots-container">
@@ -500,11 +523,12 @@
         <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
+        <div class="dot"></div>
       </div>
     </section>
 
     <section id="film" class="film-section">
-      <h2 class="section-title">FILM</h2>
+      <h2 class="section-title">CINEMA</h2>
       <div class="film-container">
         <div class="film1 film-card">
           <div class="video-box-vertical" onclick="play(this, 'sM_Hh49XFlg')">
@@ -520,13 +544,25 @@
         </div>
         <div style="text-align: center" class="film2 card-content">
           <div class="accordion-title" style="justify-content: center">
-            <h3 style="margin: 0">CORTOMETRAGGIO</h3>
+            <h3 style="margin: 0" data-it="CORTOMETRAGGIO" data-en="SHORT FILM">
+              CORTOMETRAGGIO
+            </h3>
             <span class="chevron"></span>
           </div>
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Video Editor</h4>
-              <p style="padding: 0 1em">
+              <h4 data-it="Ruolo: Video Editor" data-en="Role: Video Editor">
+                Ruolo: Video Editor
+              </h4>
+              <p
+                style="padding: 0 1em"
+                data-it="Cortometraggio realizzato per il 48 Hour Film Project,
+                incentrato su una storia di tensione emotiva e scoperta. Il
+                montaggio ha avuto un ruolo chiave nel definire il ritmo
+                narrativo, valorizzando la performance degli attori e garantendo
+                coerenza stilistica in tempi di produzione estremamente ridotti."
+                data-en="Short film made for the 48 Hour Film Project. Centered on a story of tension and emotional discovery, the editing played a key role in defining the narrative rhythm, enhancing the actors' performances and ensuring stylistic consistency on an extremely tight production budget."
+              >
                 Cortometraggio realizzato per il 48 Hour Film Project,
                 incentrato su una storia di tensione emotiva e scoperta. Il
                 montaggio ha avuto un ruolo chiave nel definire il ritmo
@@ -551,14 +587,32 @@
         </div>
         <div style="text-align: center" class="film4 card-content">
           <div class="accordion-title" style="justify-content: center">
-            <h3 style="margin: 0">CORTOMETRAGGIO</h3>
+            <h3 style="margin: 0" data-it="CORTOMETRAGGIO" data-en="SHORT FILM">
+              CORTOMETRAGGIO
+            </h3>
             <span class="chevron"></span>
           </div>
 
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Video Editor e VFX</h4>
-              <p style="padding: 0 1em">
+              <h4
+                data-it="Ruolo: Video Editor e VFX"
+                data-en="Role: Video Editor and VFX"
+              >
+                Ruolo: Video Editor e VFX
+              </h4>
+              <p
+                style="padding: 0 1em"
+                data-it="   Cortometraggio distopico realizzato per il 48 Hour Film Project,
+                ambientato in una realtà dove il meteo non è più naturale, ma un
+                prodotto acquistabile tramite abbonamenti. Il montaggio
+                definisce il tono straniante di questo futuro mercificato,
+                garantendo ritmo e coerenza narrativa nonostante i tempi
+                strettissimi. Ho curato personalmente i VFX della scena finale,
+                creando l'elemento visivo chiave che chiude il corto svelando
+                l'artificialità dell'atmosfera."
+                data-en="Dystopian short film made for the 48 Hour Film Project, set in a reality where weather is no longer natural, but a purchasable commodity via subscription. The editing defines the alienating and tight tone of this commodified future, ensuring rhythm and narrative consistency despite the tight constraints. I personally handled the VFX of the final scene, creating the key visual element that closes the short film by revealing the artificiality of the atmosphere."
+              >
                 Cortometraggio distopico realizzato per il 48 Hour Film Project,
                 ambientato in una realtà dove il meteo non è più naturale, ma un
                 prodotto acquistabile tramite abbonamenti. Il montaggio
@@ -586,14 +640,33 @@
         </div>
         <div style="text-align: center" class="film6 card-content">
           <div class="accordion-title" style="justify-content: center">
-            <h3 style="margin: 0">LUNGOMETRAGGIO</h3>
+            <h3 style="margin: 0" data-it="LUNGOMETRAGGIO" data-en="FILM">
+              LUNGOMETRAGGIO
+            </h3>
             <span class="chevron"></span>
           </div>
 
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Video e Trailer Editor</h4>
-              <p style="padding: 0 1em">
+              <h4
+                data-it="Ruolo: Video Editor e VFX"
+                data-en="Role: Video Editor of Movie and Trailer"
+              >
+                Ruolo: Video e Trailer Editor
+              </h4>
+              <p
+                style="padding: 0 1em"
+                data-it=" Lungometraggio drammatico che affronta temi delicati come la
+                violenza domestica, la ludopatia e la rinascita personale. Ho
+                curato il montaggio del film, lavorando sulla costruzione
+                emotiva della narrazione e sul ritmo delle interpretazioni,
+                essenziali per restituire la complessità dei legami tra i
+                protagonisti. Inoltre, ho realizzato il trailer ufficiale,
+                sintetizzando l'intensità della storia in un taglio promozionale
+                d'impatto, pensato per coinvolgere il pubblico senza svelare i
+                nodi cruciali della trama."
+                data-en="Dramatic feature film addressing sensitive themes such as domestic violence, gambling addiction, and personal rebirth. I managed the editing of the film, focusing on the emotional construction of the narrative and the rhythm of the performances, essential to render the complexity of the bonds between the protagonists. Furthermore, I created the high-impact official promotional trailer, synthesizing the intensity of the story with a distinctive graphic style, designed to engage the audience without revealing the crucial twists of the plot."
+              >
                 Lungometraggio drammatico che affronta temi delicati come la
                 violenza domestica, la ludopatia e la rinascita personale. Ho
                 curato il montaggio del film, lavorando sulla costruzione
@@ -637,8 +710,16 @@
           </div>
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Video Editor</h4>
-              <p>
+              <h4 data-it="Ruolo: Video Editor" data-en="Role: Video Editor">
+                Ruolo: Video Editor
+              </h4>
+              <p
+                data-it=" Attraverso un ritmo narrativo studiato e una selezione mirata
+                delle sequenze, l'editing enfatizza i concetti di sicurezza e
+                prontezza operativa, traducendo visivamente l'impegno di AXON
+                nell'ambito della difesa"
+                data-en="Through a carefully crafted narrative rhythm and a targeted selection of sequences, the editing emphasizes the concepts of security and operational readiness, visually translating AXON's commitment to the defense sector."
+              >
                 Attraverso un ritmo narrativo studiato e una selezione mirata
                 delle sequenze, l'editing enfatizza i concetti di sicurezza e
                 prontezza operativa, traducendo visivamente l'impegno di AXON
@@ -669,8 +750,15 @@
           </div>
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Video Editor</h4>
-              <p>
+              <h4 data-it="Ruolo: Video Editor" data-en="Role: Video Editor">
+                Ruolo: Video Editor
+              </h4>
+              <p
+                data-it="Video reportage dell'esclusivo evento 'La Volpe Argentata', che
+                unisce la passione per le auto d'epoca alla competizione
+                golfistica in una cornice di prestigio"
+                data-en="Video reportage of the exclusive event 'La Volpe Argentata', combining a passion for vintage cars with a golf competition in a prestigious setting."
+              >
                 Video reportage dell'esclusivo evento "La Volpe Argentata", che
                 unisce la passione per le auto d'epoca alla competizione
                 golfistica in una cornice di prestigio
@@ -704,8 +792,20 @@
 
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Produttrice e Video Editor</h4>
-              <p>
+              <h4
+                data-it="Ruolo: Produttrice e Video Editor"
+                data-en="Role: Producer & Video Editor"
+              >
+                Ruolo: Produttrice e Video Editor
+              </h4>
+              <p
+                data-it="Curatrice tecnica per una serie di episodi del podcast di
+                Fondazione Vertical, un progetto dedicato a temi di impatto
+                sociale e innovazione. Ho gestito l'intera produzione video,
+                definendo lo stile di regia multicamera e occupandomi del
+                montaggio di ogni puntata."
+                data-en="Technical curator for a series of episodes of the Fondazione Vertical podcast, a project dedicated to high-impact social and innovation themes. I managed the entire video production, defining the multicamera directing style and handling the editing of each episode."
+              >
                 Curatrice tecnica per una serie di episodi del podcast di
                 Fondazione Vertical, un progetto dedicato a temi di impatto
                 sociale e innovazione. Ho gestito l'intera produzione video,
@@ -732,14 +832,28 @@
         </div>
         <div class="div4 card-content">
           <div class="accordion-title">
-            <h3 style="margin: 0">VIDEOMNIA TV - INTERVISTA A NINO CELESTE</h3>
+            <h3
+              style="margin: 0"
+              data-it="VIDEOMNIA TV - INTERVISTA A NINO CELESTE"
+              data-en="VIDEOMNIA TV - INTERVIEW WITH NINO CELESTE"
+            >
+              VIDEOMNIA TV - INTERVISTA A NINO CELESTE
+            </h3>
             <span class="chevron"></span>
           </div>
 
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Video Editor</h4>
-              <p>
+              <h4 data-it="Ruolo: Video Editor" data-en="Role: Video Editor">
+                Ruolo: Video Editor
+              </h4>
+              <p
+                data-it="Intervista dedicata a Nino Celeste, storico direttore della
+                fotografia del cinema italiano. Il montaggio è strutturato per  accompagnare il racconto della sua carriera, alternando i
+                momenti di dialogo con materiale d'archivio e riferimenti visivi
+                alle sue opere"
+                data-en="Interview dedicated to Nino Celeste, historical director of photography of Italian cinema. The editing is structured to accompany the story of his career, alternating moments of dialogue with archival material and visual references to his works."
+              >
                 Intervista dedicata a Nino Celeste, storico direttore della
                 fotografia del cinema italiano. Il montaggio è strutturato per
                 accompagnare il racconto della sua carriera, alternando i
@@ -774,8 +888,18 @@
           </div>
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Motion Designer</h4>
-              <p>
+              <h4
+                data-it="Ruolo: Motion Designer"
+                data-en="Role: Motion Designer"
+              >
+                Ruolo: Motion Designer
+              </h4>
+              <p
+                data-it="Realizzazione di video animati per aziende no profit come Save
+                The Children e LD4D. Ho curato il movimento e il sound design
+                dei video"
+                data-en="Creation of animated videos for non-profit companies such as Save The Children and LD4D. I managed the movement and sound design of the videos."
+              >
                 Realizzazione di video animati per aziende no profit come Save
                 The Children e LD4D. Ho curato il movimento e il sound design
                 dei video
@@ -805,8 +929,19 @@
           </div>
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Motion Designer</h4>
-              <p>
+              <h4
+                data-it="Ruolo: Motion Designer"
+                data-en="Role: Motion Designer"
+              >
+                Ruolo: Motion Designer
+              </h4>
+              <p
+                data-it="  Sigla d'apertura dello storico format sul Teramo Calcio. Il
+                montaggio unisce un linguaggio moderno alla sigla storica degli
+                anni '90, utilizzando i colori biancorossi come elemento grafico
+                distintivo per celebrare l'identità e la tradizione del club"
+                data-en="Opening intro for the historic format on Teramo Calcio. The editing blends a modern style with the historical aesthetic of the 90s, using the red and white colors as a distinctive graphic element to celebrate the club's identity and tradition."
+              >
                 Sigla d'apertura dello storico format sul Teramo Calcio. Il
                 montaggio unisce un linguaggio moderno alla sigla storica degli
                 anni '90, utilizzando i colori biancorossi come elemento grafico
@@ -841,8 +976,20 @@
 
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Ripresa e Colorist</h4>
-              <p>
+              <h4
+                data-it="Ruolo: Ripresa e Colorist"
+                data-en="Role: Cinematographer & Colorist"
+              >
+                Ruolo: Ripresa e Colorist
+              </h4>
+              <p
+                data-it="Un visual essenziale costruito attorno a un'idea sinestetica:
+                evocare l'aroma del caffè attraverso la resa visiva del calore.
+                Ho curato ripresa e color grading per dare corpo e texture al
+                vapore, trasformandolo nel protagonista visivo che accompagna la
+                tazzina"
+                data-en="An essential visual crafted around a synesthetic idea: evoking the aroma of coffee through the visual rendering of the warmth. I managed filming and color grading to give body and texture to the steam, turning it into the visual protagonist that accompanies the cup."
+              >
                 Un visual essenziale costruito attorno a un'idea sinestetica:
                 evocare l'aroma del caffè attraverso la resa visiva del calore.
                 Ho curato ripresa e color grading per dare corpo e texture al
@@ -874,83 +1021,19 @@
           </div>
           <div class="accordion-description">
             <div class="accordion-description-inner">
-              <h4>Ruolo: Video Editor e Colorist</h4>
-              <p>
+              <h4
+                data-it="Ruolo: Video Editor e Colorist"
+                data-en="Role: Video Editor and Colorist"
+              >
+                Ruolo: Video Editor e Colorist
+              </h4>
+              <p
+                data-it="Montaggio di un videoclip musicale del gruppo Fidanza Jazz Combo
+                girato in studio come visual della canzone a Birimbo Birambo"
+                data-en="Music video editing of the group's song. The editing defines the emotional tone of the storytelling and the rhythm of the performances. Additionally, I directed the studio trailer for the song Birimbo Birambo."
+              >
                 Montaggio di un videoclip musicale del gruppo Fidanza Jazz Combo
                 girato in studio come visual della canzone a Birimbo Birambo
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="stopmotion" class="stopmotion-section">
-      <h2 class="section-title">Stop Motion</h2>
-      <div class="oriziontal-container">
-        <div class="div1 oriziontal-card">
-          <div class="video-box" onclick="play(this, 'bsgZDiDaifg')">
-            <div class="card-image">
-              <img
-                loading="lazy"
-                alt="Full Production per stop motion La Lasagna"
-                src="assets/7-StopMotion-Lasagna.png"
-                class="thumbnail"
-              />
-            </div>
-          </div>
-        </div>
-        <div class="div3 card-content">
-          <div class="accordion-title">
-            <h3 style="margin: 0">LASAGNA - STOP MOTION FOOD CONCEPT</h3>
-            <span class="chevron"></span>
-          </div>
-          <div class="accordion-description">
-            <div class="accordion-description-inner">
-              <h4>Ruolo: Full Production</h4>
-              <p>
-                Video concept realizzato anche in stop motion, incentrato sulla
-                stratificazione della lasagna. Ho curato dalla ripresa al
-                montaggio, costruendo una narrazione visiva che esalta il
-                processo di assemblaggio del piatto strato dopo strato. Il
-                lavoro di color grading valorizza i contrasti cromatici tra
-                ragù, besciamella e pasta, mentre il sound design accompagna il
-                ritmo ipnotico dell'animazione, trasformando una ricetta
-                tradizionale in un'esperienza estetica e sensoriale.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="div2 oriziontal-card">
-          <div class="oriziontal-card">
-            <div class="video-box" onclick="play(this, 'zHCaeUmj9UU')">
-              <div class="card-image">
-                <img
-                  loading="lazy"
-                  alt="Full Production per stop motion Camera Caffe"
-                  src="assets/7-StopMotion-CameraCaffè.png"
-                  class="thumbnail"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="div4 card-content">
-          <div class="accordion-title">
-            <h3 style="margin: 0">CAMERA CAFFÈ - VIDEO SOCIAL AZIENDALE</h3>
-            <span class="chevron"></span>
-          </div>
-
-          <div class="accordion-description">
-            <div class="accordion-description-inner">
-              <h4>Ruolo: Full Productiont</h4>
-              <p>
-                Video realizzato nell'ambito della creazione di contenuti social
-                per Videomnia Produzioni. Ho realizzato il movimento delle
-                camere in stop motion ed il montaggio della clip per creare un
-                contenuto che ricreasse l'ambiente lavorativo dello studio di
-                produzione
               </p>
             </div>
           </div>
